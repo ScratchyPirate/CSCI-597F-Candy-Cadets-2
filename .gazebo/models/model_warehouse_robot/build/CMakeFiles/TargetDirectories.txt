@@ -1,0 +1,3 @@
+/.gazebo/models/model_warehouse_robot/build/CMakeFiles/lidar_node.dir
+/.gazebo/models/model_warehouse_robot/build/CMakeFiles/edit_cache.dir
+/.gazebo/models/model_warehouse_robot/build/CMakeFiles/rebuild_cache.dir
