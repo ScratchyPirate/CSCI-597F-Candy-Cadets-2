@@ -74,6 +74,70 @@
            	<frame name="lidar_frame" attached_to='chassis'>
 		    <pose>0.8 0 0.5 0 0 0</pose>
 		</frame>
+	    <joint name="camera_chassis_joint" type="fixed">
+      <parent>chassis</parent>
+      <child>camera_holder</child>
+      <pose>0 0.5 0 0 0 0</pose>
+      <axis>
+        <xyz>0 0 1</xyz>
+      </axis>
+    </joint>
+	    <link name='camera_holder'>
+	       <pose relative_to='chassis'>1 0 0.3 0 0 0</pose>
+			<sensor name="d435_color" type="camera">
+				<always_on>1</always_on>
+				<update_rate>30</update_rate>
+				<visualize>1</visualize>
+				<pose>0 0.0175 0.5125 0 -0 0</pose>
+				<topic>/model/igt_one/color_camera</topic>
+				<camera name="d435">
+					<horizontal_fov>1.21126</horizontal_fov>
+					<image>
+						<width>640</width>
+						<height>480</height>
+						<format>RGB_INT8</format>
+					</image>
+					<clip>
+						<near>0.1</near>
+						<far>100</far>
+					</clip>
+					<noise>
+						<type>gaussian</type>
+						<mean>0</mean>
+						<stddev>0.007</stddev>
+					</noise>
+				</camera>
+			</sensor>>
+	        <mass>0.1</mass>
+                    <inertia>
+                        <ixx>0.126164</ixx>
+                        <ixy>0</ixy>
+                        <ixz>0</ixz>
+                        <iyy>0.416519</iyy>
+                        <iyz>0</iyz>
+                        <izz>0.481014</izz>
+                    </inertia>
+                         <visual name='visual'>
+                    <geometry>
+                        <box>
+                            <size>0.5 0.5 0.5</size> <!--question: this size is in meter-->
+                        </box>
+                    </geometry>
+                    <!--let's add color to our link-->
+                    <material>
+                        <ambient>0.0 1.0 0.0 1</ambient>
+                        <diffuse>0.0 1.0 0.0 1</diffuse>
+                        <specular>0.0 1.0 0.0 1</specular>
+                    </material>
+                </visual>
+                <collision name='collision'> <!--todo: describe why we need the collision-->
+                    <geometry>
+                        <box>
+                            <size>0.5 0.5 0.5</size>
+                        </box>
+                    </geometry>
+                </collision>
+	    </link>
             <link name='chassis'>
  
 		<sensor name='gpu_lidar' type='gpu_lidar'>"
